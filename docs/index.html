@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D-Printed Meat Research</title>
+<meta name="description" content="Research on 3D-printed meat: technology, companies, market size, consumer acceptance and US regulation. By Lexi Loughlin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f7f3ee; --surface:#fffdfa; --ink:#1d1a17; --ink-2:#55504a; --muted:#8a847c; --line:#e6dfd5;
+  --accent:#c2412d; --accent-soft:#f6e1da; --blue:#2a78d6; --orange:#eb6834; --aqua:#1baf7a;
+  --blue-soft:#dce8f8; --orange-soft:#fbe4da; --aqua-soft:#d9f2e8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141210; --surface:#1d1a17; --ink:#f2ede6; --ink-2:#c8c0b5; --muted:#8f877c; --line:#332e29;
+    --accent:#e56a52; --accent-soft:#3a221c; --blue:#3987e5; --orange:#d95926; --aqua:#199e70;
+    --blue-soft:#1b2a3d; --orange-soft:#3a2219; --aqua-soft:#16302a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141210; --surface:#1d1a17; --ink:#f2ede6; --ink-2:#c8c0b5; --muted:#8f877c; --line:#332e29;
+  --accent:#e56a52; --accent-soft:#3a221c; --blue:#3987e5; --orange:#d95926; --aqua:#199e70;
+  --blue-soft:#1b2a3d; --orange-soft:#3a2219; --aqua-soft:#16302a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
+h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin-top:0}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
+.lead{color:var(--ink-2);max-width:680px}
+header.hero{padding:72px 0 48px}
+.hero h1{font-size:clamp(2.4rem,7vw,4.4rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.meta{color:var(--muted);font-size:.9rem;margin-top:16px}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+nav.toc a{color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px;font-size:.88rem}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.stat{font-family:Fraunces,serif;font-size:2.6rem;font-weight:800;color:var(--accent);line-height:1}
+.card p{margin:.4em 0 0;color:var(--ink-2);font-size:.95rem}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin:24px 0}
+.step{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;position:relative}
+.step b{display:block;font-size:.95rem}
+.step span{font-size:.85rem;color:var(--ink-2)}
+.step .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;margin-bottom:8px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.split{grid-template-columns:1fr}}
+.pill{display:inline-block;font-size:.75rem;font-weight:600;padding:2px 10px;border-radius:999px}
+.p-plant{background:var(--aqua-soft);color:var(--aqua)}
+.p-cell{background:var(--blue-soft);color:var(--blue)}
+.p-both{background:var(--orange-soft);color:var(--orange)}
+.co h3{font-size:1.25rem;margin:8px 0 2px}
+.co .where{color:var(--muted);font-size:.85rem}
+.co dl{margin:12px 0 0;font-size:.9rem}
+.co dt{color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-top:8px}
+.co dd{margin:0}
+.chart-box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.chart-box h3{font-size:1.1rem;margin-bottom:4px}
+.chart-box .src{font-size:.78rem;color:var(--muted);margin-top:8px}
+.canvas-wrap{position:relative;height:280px}
+.timeline{position:relative;margin:24px 0 0;padding-left:28px}
+.timeline:before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:var(--line)}
+.tl{position:relative;margin-bottom:18px}
+.tl:before{content:"";position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--blue);border:3px solid var(--bg)}
+.tl.reg:before{background:var(--orange)}
+.tl time{font-size:.8rem;color:var(--muted);font-weight:600}
+.tl b{display:block}
+.tl span{color:var(--ink-2);font-size:.92rem}
+.callout{background:var(--accent-soft);border-left:4px solid var(--accent);padding:16px 18px;border-radius:0 12px 12px 0;margin:20px 0}
+.states{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:640px){.states{grid-template-columns:1fr}}
+.states h4{margin:0 0 8px;font-size:.95rem}
+.states ul{list-style:none;padding:0;margin:0}
+.states li{padding:8px 12px;border-radius:8px;margin-bottom:6px;font-size:.92rem}
+.ban li{background:var(--blue-soft)} .lab li{background:var(--orange-soft)} .stu li{background:var(--aqua-soft)}
+.sources li{margin-bottom:6px;font-size:.9rem;color:var(--ink-2)}
+a{color:var(--accent)}
+footer{padding:32px 0 48px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:.78rem;text-transform:uppercase}
+.tablewrap{overflow-x:auto}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <div class="eyebrow">Research project · October 2026</div>
+  <h1>Can you <em>print</em> a steak?</h1>
+  <p class="lead">A data-driven look at 3D-printed meat: how it is made, who is selling it, how big the market really is, whether people will eat it, and why Texas banned part of it.</p>
+  <p class="meta">By Lexi Loughlin · M.S. Business Analytics, SMU Cox · <a href="https://github.com/lexiloughlin/printed-meat-research">View data &amp; code on GitHub</a></p>
+  <nav class="toc">
+    <a href="#findings">Key findings</a><a href="#how">How it works</a><a href="#companies">Companies</a>
+    <a href="#market">Market size</a><a href="#consumers">Consumers</a><a href="#texas">Regulation</a><a href="#sources">Sources</a>
+  </nav>
+</header>
+
+<section id="findings"><div class="wrap">
+  <div class="eyebrow">At a glance</div>
+  <h2>Key findings</h2>
+  <div class="grid g3">
+    <div class="card"><div class="stat">2</div><p><b>industries, not one.</b> Plant-based printed meat is on shelves now; printed cultivated (cell-grown) meat is still mostly prototypes.</p></div>
+    <div class="card"><div class="stat">~61x</div><p><b>gap between market estimates.</b> One report says $178.6B, another $2.9B. Check the scope before you quote a number.</p></div>
+    <div class="card"><div class="stat">24%</div><p><b>of Germans are open to eating it</b>, up from 13% in 2019. Under-50s are about twice as open as over-50s.</p></div>
+    <div class="card"><div class="stat">3</div><p><b>US states ban cultivated meat sales</b>, including Texas. Plant-based printed steaks are not affected.</p></div>
+    <div class="card"><div class="stat">420</div><p><b>kg per hour</b> is the stated top output of Steakholder Foods' MX200 industrial meat printer.</p></div>
+    <div class="card"><div class="stat">60%</div><p><b>infill</b> in a triangle pattern gave printed soy "steak" the same chewiness as a commercial chicken control in a lab study.</p></div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <div class="eyebrow">Technology</div>
+  <h2>How 3D-printed meat works</h2>
+  <p class="lead">Ground meat is easy to imitate. Whole cuts are hard because steak has structure: muscle fibers with fat running through them. Printing builds that structure layer by layer.</p>
+  <div class="flow">
+    <div class="step"><div class="n">1</div><b>Ingredients</b><span>Plant protein and fat, mycoprotein, or living animal cells</span></div>
+    <div class="step"><div class="n">2</div><b>Printable "ink"</b><span>Mixed into a paste (or bio-ink) that flows through a nozzle and then holds its shape</span></div>
+    <div class="step"><div class="n">3</div><b>Digital model</b><span>Software maps where "muscle" and "fat" go to create marbling</span></div>
+    <div class="step"><div class="n">4</div><b>Print</b><span>The printer deposits both materials layer by layer</span></div>
+    <div class="step"><div class="n">5</div><b>Finish</b><span>Plant-based: set and package. Cultivated: incubate so cells grow into tissue</span></div>
+  </div>
+  <div class="split">
+    <div class="card"><span class="pill p-plant">Plant-based printing</span><h3 style="margin-top:10px">On sale today</h3><p>Two pastes, one acting like muscle and one like fat, are layered together. Steakholder Foods calls this <i>Fused Paste Layering</i>; Revo Foods calls its version <i>3D Structuring</i> and says the milder process helps preserve nutrients.</p></div>
+    <div class="card"><span class="pill p-cell">Cultivated bioprinting</span><h3 style="margin-top:10px">Still in the lab</h3><p>Living cow cells are printed and then grown. In 2021 Aleph Farms and the Technion made a ribeye prototype with real muscle and fat plus a vascular-like system to feed thicker tissue.</p></div>
+  </div>
+  <div class="callout"><b>What the lab says:</b> In a 2021 <i>Foods</i> study, xanthan gum made the best soy-based ink (guar gum wouldn't print at all). At 20% infill the "steak" cracked and dried out when fried; at 80–100% it stayed undercooked inside. 60% infill hit the sweet spot.</div>
+</div></section>
+
+<section id="companies"><div class="wrap">
+  <div class="eyebrow">Industry</div>
+  <h2>Who is making it</h2>
+  <div class="grid g3" id="companyCards"></div>
+
+  <h3 style="margin-top:40px">Milestones, 2021–2026</h3>
+  <div class="timeline" id="timeline"></div>
+
+  <div class="chart-box" style="margin-top:24px">
+    <h3>Industrial printers: stated output per hour</h3>
+    <div class="canvas-wrap" style="height:180px"><canvas id="printerChart" aria-label="Bar chart of printer output: MX200 up to 420 kg per hour, HD144 about 100 kg per hour" role="img"></canvas></div>
+    <div class="src">Source: Green Queen, May 2026 (Steakholder Foods company figures)</div>
+  </div>
+</div></section>
+
+<section id="market"><div class="wrap">
+  <div class="eyebrow">Market</div>
+  <h2>How big is the market? It depends who you ask.</h2>
+  <p class="lead">Paid market reports are often quoted as fact. These two disagree by about 61 times, even though one covers plant- and cell-based printed meat and the other only plant-based.</p>
+  <div class="chart-box">
+    <h3>Published market-size estimates (US$ billions)</h3>
+    <div class="canvas-wrap" style="height:200px"><canvas id="marketChart" aria-label="Bar chart: Exactitude Consultancy $178.64B for 2023, Research Nester $2.92B for 2024" role="img"></canvas></div>
+    <div class="tablewrap"><table>
+      <tr><th>Publisher</th><th>Scope</th><th>Base</th><th>Forecast</th><th>CAGR</th></tr>
+      <tr><td>Exactitude Consultancy</td><td>3D printed meat</td><td>$178.64B (2023)</td><td>$504.88B (2030)</td><td>16%</td></tr>
+      <tr><td>Research Nester</td><td>3D printing plant-based meat</td><td>$2.92B (2024)</td><td>$16.41B (2037)</td><td>14.2%</td></tr>
+    </table></div>
+  </div>
+  <div class="callout"><b>Analyst take:</b> Plant-based meat as a whole is under 1% of meat sales, purchases fell 10% in 2025, and only 11% of US households buy it. A $178B printed-meat market doesn't fit that picture, so that figure is likely measuring something much broader.</div>
+</div></section>
+
+<section id="consumers"><div class="wrap">
+  <div class="eyebrow">Demand</div>
+  <h2>Will people actually eat it?</h2>
+  <div class="grid g2">
+    <div class="chart-box">
+      <h3>Germans open to eating 3D-printed meat</h3>
+      <div class="canvas-wrap"><canvas id="trendChart" aria-label="13% in 2019, 24% in 2025" role="img"></canvas></div>
+      <div class="src">Source: Bitkom survey (n=1,004, 2025), via vegconomist</div>
+    </div>
+    <div class="chart-box">
+      <h3>Openness by age group, 2025</h3>
+      <div class="canvas-wrap"><canvas id="ageChart" aria-label="Ages 16-29 33%, 30-49 35%, 50-64 18%, 65+ 14%" role="img"></canvas></div>
+      <div class="src">Source: Bitkom survey, via vegconomist</div>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><div class="stat">31%</div><p>of Germans think it could make food production more sustainable</p></div>
+    <div class="card"><div class="stat">7%</div><p>would pay more for it than for conventional meat</p></div>
+    <div class="card"><div class="stat">~30%</div><p>of US meat-eaters like the taste of the average meat-free product, vs two-thirds for animal meat</p></div>
+  </div>
+  <div class="callout">A 2025 study of 571 consumers in France, the Czech Republic and Ireland found people were <b>less willing to try printed cultivated steak</b> than other printed foods like pasta or sweets. Taste and price topped the list of what would change their minds.</div>
+</div></section>
+
+<section id="texas"><div class="wrap">
+  <div class="eyebrow">Regulation</div>
+  <h2>Texas banned it. Sort of.</h2>
+  <p class="lead">Several states have acted on <b>cultivated</b> (cell-grown) meat. Texas SB 261 took effect September 1, 2025: a two-year ban on producing and selling it, with fines up to $25,000 per day.</p>
+  <div class="states" style="margin-top:20px">
+    <div class="ban"><h4 style="color:var(--blue)">Sale ban (3)</h4><ul><li><b>Texas</b> · SB 261</li><li>Florida</li><li>Montana · HB 401</li></ul></div>
+    <div class="lab"><h4 style="color:var(--orange)">Labeling rules (3)</h4><ul><li>South Carolina · SB 103</li><li>South Dakota · HB 1022</li><li>Utah · HB 138</li></ul></div>
+    <div class="stu"><h4 style="color:var(--aqua)">Study (1)</h4><ul><li>North Dakota · HB 1151</li></ul></div>
+  </div>
+  <div class="callout"><b>Court fight:</b> Wildtype and UPSIDE Foods, with the Institute for Justice, sued Texas, arguing the ban is protectionism that violates the Commerce Clause. In January 2026 a federal judge let that claim proceed but denied a preliminary injunction, so the ban stays in effect for now.<br><br><b>Key nuance:</b> these laws target cells, not printers. A plant-based printed steak is legal to sell in Texas.</div>
+</div></section>
+
+<section id="sources"><div class="wrap">
+  <div class="eyebrow">References</div>
+  <h2>Sources</h2>
+  <ul class="sources">
+    <li>Green Queen — <a href="https://www.greenqueen.com.hk/steakholder-foods-perfecta-whole-cut-plant-based-meat-launch/">Steakholder Foods to launch Perfecta in the US</a> (May 2026)</li>
+    <li>Green Queen — <a href="https://www.greenqueen.com.hk/judge-deals-early-blow-to-texas-in-lawsuit-over-cultivated-meat-ban/">Judge deals early blow to Texas in cultivated meat lawsuit</a> (Jan 2026)</li>
+    <li>Protein Production Technology — <a href="https://www.proteinproductiontechnology.com/post/redefine-meat-serves-up-juicier-next-generation-flank-steak-as-plant-based-whole-cuts-evolve">Redefine Meat next-generation Flank Steak</a> (Mar 2026)</li>
+    <li>Food Safety News — <a href="https://www.foodsafetynews.com/2025/09/texas-sued-over-cell-cultured-meat-ban-that-went-into-effect-on-september-1">Texas sued over cell-cultured meat ban</a> (Sep 2025)</li>
+    <li>vegconomist — <a href="https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/">One in four Germans open to eating 3D-printed meat</a> (May 2025)</li>
+    <li>Chaloupkova et al. — <a href="https://research.ucc.ie/en/publications/how-do-you-want-your-steak-attitudes-of-european-consumers-toward/">How do you want your steak?</a>, <i>Food Quality and Preference</i> (2025)</li>
+    <li>Agriland — <a href="https://www.agriland.co.uk/farming-news/3d-printed-vegan-steak-launches-in-uk-retailers/">3D printed vegan steak launches in UK retailers</a> (Sep 2024)</li>
+    <li>3D Printing Industry — <a href="https://3dprintingindustry.com/news/revo-foods-opens-worlds-largest-3d-food-printing-facility-in-vienna-233213/">Revo Foods opens 3D food printing facility</a> (Oct 2024)</li>
+    <li>Exactitude Consultancy via GlobeNewswire — <a href="https://globenewswire.com/news-release/2024/7/3/2908480/0/en/3D-Printed-Meat-Market-Analysis-Demand-Status-and-Outlook-2024-2030-Exactitude-Consultancy.html">3D Printed Meat Market Analysis</a> (Jul 2024)</li>
+    <li>Research Nester — <a href="https://www.researchnester.com/reports/3d-printing-plant-based-meat-market/3810">3D Printing Plant-Based Meat Market</a></li>
+    <li>vegconomist — <a href="https://vegconomist.com/investments-finance/israels-redefine-meat-raises-135m-for-worldwide-expansion/">Redefine Meat raises $135M</a> (Jan 2022)</li>
+    <li>Manufactur3D — <a href="https://manufactur3dmag.com/savoreat-launches-personalised-plant-based-3d-printed-burgers/">SavorEat launches personalised printed burgers</a> (Jan 2022)</li>
+    <li>Chen, Zhang &amp; Bhandari — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8465047/">3D Printing of Steak-like Foods Based on Textured Soybean Protein</a>, <i>Foods</i> (2021)</li>
+    <li>Technion — <a href="https://www.technion.ac.il/en/blog/2021/02/world-1st-cultivated-ribeye-steak/">World's first cultivated ribeye steak</a> (Feb 2021)</li>
+    <li>vegconomist — <a href="https://vegconomist.com/companies-and-portraits/novameat-gets-funding-from-spanish-government-launches-whole-cuts-into-no-9-worlds-best-restaurant/">Novameat launches whole cuts at Disfrutar</a> (Jan 2021)</li>
+  </ul>
+</div></section>
+
+<footer><div class="wrap">Research current as of October 2026 · Data and chart code: <a href="https://github.com/lexiloughlin/printed-meat-research">github.com/lexiloughlin/printed-meat-research</a></div></footer>
+
+<script>
+const companies = [
+  {name:"Redefine Meat", where:"Netherlands (founded in Israel)", type:"plant", flagship:"Flank steak · 25g protein per 100g", latest:"Next-gen steak launched across Europe (Mar 2026)"},
+  {name:"Steakholder Foods", where:"Israel", type:"both", flagship:"Perfecta whole cuts: steak, chicken, salmon", latest:"US retail launch planned for H2 2026"},
+  {name:"Revo Foods", where:"Austria", type:"plant", flagship:"Mycoprotein salmon-style filet", latest:"Vienna Taste Factory, up to 60 t/month (Oct 2024)"},
+  {name:"SavorEat", where:"Israel", type:"plant", flagship:"Custom burger printed on-site in ~6 min", latest:"Sodexo partnership for US universities"},
+  {name:"Novameat", where:"Spain", type:"plant", flagship:"Whole-cut steak & pork", latest:"Debuted at Michelin-starred Disfrutar (2021)"},
+  {name:"Aleph Farms", where:"Israel", type:"cell", flagship:"Bioprinted cultivated ribeye", latest:"First cultivated ribeye prototype (2021)"}
+];
+const pills = {plant:["p-plant","Plant-based"], cell:["p-cell","Cultivated"], both:["p-both","Plant + cultivated R&D"]};
+document.getElementById("companyCards").innerHTML = companies.map(c => `
+  <div class="card co"><span class="pill ${pills[c.type][0]}">${pills[c.type][1]}</span>
+  <h3>${c.name}</h3><div class="where">${c.where}</div>
+  <dl><dt>Flagship</dt><dd>${c.flagship}</dd><dt>Latest</dt><dd>${c.latest}</dd></dl></div>`).join("");
+
+const events = [
+  ["Jan 2021","Novameat","Whole-cut plant steak debuts at two-Michelin-star Disfrutar"],
+  ["Feb 2021","Aleph Farms","First 3D-bioprinted cultivated ribeye, with the Technion"],
+  ["Jan 2022","SavorEat","Personalized printed burgers launch in Israeli restaurants"],
+  ["Jan 2022","Redefine Meat","Raises $135M (about $180M total) for global expansion"],
+  ["Jul 2024","Redefine Meat","Flank steak goes on sale at UK online grocer Ocado"],
+  ["Oct 2024","Revo Foods","Opens Vienna Taste Factory, up to 60 tons a month"],
+  ["Sep 2025","Texas","SB 261 cultivated-meat ban takes effect",true],
+  ["Jan 2026","Texas","Judge lets lawsuit proceed; ban stays in effect",true],
+  ["Mar 2026","Redefine Meat","Next-generation flank steak launches across Europe"],
+  ["May 2026","Steakholder Foods","Announces Perfecta US retail launch for H2 2026"]
+];
+document.getElementById("timeline").innerHTML = events.map(e =>
+  `<div class="tl${e[3]?" reg":""}"><time>${e[0]}</time><b>${e[1]}</b><span>${e[2]}</span></div>`).join("");
+
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+function makeCharts(){
+  const ink2=css("--ink-2"), line=css("--line"), blue=css("--blue");
+  Chart.defaults.font.family="Inter, system-ui, sans-serif";
+  Chart.defaults.color=ink2;
+  const base = (opts)=>Object.assign({responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{x:{grid:{color:line}},y:{grid:{color:line}}}},opts);
+  const bar = {backgroundColor:blue, borderRadius:4, maxBarThickness:56};
+  new Chart(printerChart,{type:"bar",data:{labels:["MX200 meat printer","HD144 seafood printer"],datasets:[{...bar,data:[420,100]}]},
+    options:base({indexAxis:"y",plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} kg/hr`}}},
+      scales:{x:{grid:{color:line},title:{display:true,text:"kg per hour"}},y:{grid:{display:false}}}})});
+  new Chart(marketChart,{type:"bar",data:{labels:["Exactitude (2023)","Research Nester (2024)"],datasets:[{...bar,data:[178.64,2.92]}]},
+    options:base({indexAxis:"y",plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` $${c.raw}B`}}},
+      scales:{x:{grid:{color:line},title:{display:true,text:"US$ billions"}},y:{grid:{display:false}}}})});
+  new Chart(trendChart,{type:"bar",data:{labels:["2019","2025"],datasets:[{...bar,data:[13,24]}]},
+    options:base({plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}% open`}}},
+      scales:{y:{beginAtZero:true,max:40,grid:{color:line},ticks:{callback:v=>v+"%"}},x:{grid:{display:false}}}})});
+  new Chart(ageChart,{type:"bar",data:{labels:["16–29","30–49","50–64","65+"],datasets:[{...bar,data:[33,35,18,14]}]},
+    options:base({plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}% open`}}},
+      scales:{y:{beginAtZero:true,max:40,grid:{color:line},ticks:{callback:v=>v+"%"}},x:{grid:{display:false}}}})});
+}
+if (window.Chart) makeCharts();
+</script>
+</body>
+</html>

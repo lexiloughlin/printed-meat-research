@@ -1,0 +1,10 @@
+study,country,year,sample_size,group,metric,value_pct,source_url
+Bitkom,Germany,2019,n/a,All adults 16+,Open to eating 3D-printed meat,13,https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/
+Bitkom,Germany,2025,1004,All adults 16+,Open to eating 3D-printed meat,24,https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/
+Bitkom,Germany,2025,1004,Ages 16-29,Open to eating 3D-printed meat,33,https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/
+Bitkom,Germany,2025,1004,Ages 30-49,Open to eating 3D-printed meat,35,https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/
+Bitkom,Germany,2025,1004,Ages 50-64,Open to eating 3D-printed meat,18,https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/
+Bitkom,Germany,2025,1004,Ages 65+,Open to eating 3D-printed meat,14,https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/
+Bitkom,Germany,2025,1004,All adults 16+,Think it could make food production more sustainable,31,https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/
+Bitkom,Germany,2025,1004,All adults 16+,See it as a luxury product,17,https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/
+Bitkom,Germany,2025,1004,All adults 16+,Would pay more than for conventional meat,7,https://vegconomist.com/meat/one-in-four-germans-open-eating-3d-printed-meat-survey-finds/
