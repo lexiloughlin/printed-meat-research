@@ -64,8 +64,8 @@ ax.xaxis.grid(True, color=GRID, lw=0.8)
 ax.set_axisbelow(True)
 ax.set_xlabel("Estimated market size (US$ billions)")
 ratio = m.base_value_usd_bn.max() / m.base_value_usd_bn.min()
-ax.set_title(f"Two reports, one industry: estimates differ ~{ratio:.0f}x")
-note(fig, "Sources: Exactitude Consultancy (Jul 2024); Research Nester. Scopes differ slightly, but not by ~60x.")
+ax.set_title(f"Historical publisher claims: values differ ~{ratio:.0f}x")
+note(fig, "Sources: Exactitude Consultancy (Jul 2024); Research Nester. Different scope/base years; not comparable market estimates.")
 save(fig, "market_estimates.png")
 
 # 2. Germany: openness by age group (2025)
@@ -78,16 +78,16 @@ for b, v in zip(bars, age.value_pct):
 ax.axhline(24, color=MUTED, lw=1.2, ls="--")
 ax.text(3.35, 25, "All adults: 24%", color=INK_2, fontsize=9.5, ha="right")
 ax.set_ylim(0, 42)
-ax.set_ylabel("% open to eating 3D-printed meat")
+ax.set_ylabel("% open to eating cultivated printed meat")
 ax.set_xlabel("Age group")
 ax.yaxis.grid(True, color=GRID, lw=0.8)
 ax.set_axisbelow(True)
 ax.set_title("Under-50s are about twice as open as older Germans")
-note(fig, "Source: Bitkom survey, n=1,004 Germans 16+, early 2025 (via vegconomist).")
+note(fig, "Source: Bitkom 2025 release. Total n=1,004, aged 16+; subgroup n not disclosed.")
 save(fig, "germany_openness_by_age.png")
 
 # 3. Germany: 2019 vs 2025
-trend = s[(s.group == "All adults 16+") & (s.metric == "Open to eating 3D-printed meat")]
+trend = s[(s.group == "All adults 16+") & (s.metric == "Open to eating cultivated 3D-printed meat")]
 fig, ax = plt.subplots(figsize=(5, 3.6))
 bars = ax.bar(trend.year.astype(str), trend.value_pct, color=BLUE, width=0.45)
 for b, v in zip(bars, trend.value_pct):
@@ -96,8 +96,8 @@ ax.set_ylim(0, 30)
 ax.yaxis.grid(True, color=GRID, lw=0.8)
 ax.set_axisbelow(True)
 ax.set_ylabel("% open to eating it")
-ax.set_title("Openness nearly doubled in 6 years")
-note(fig, "Source: Bitkom (Germany).")
+ax.set_title("Cultivated printed meat: stated openness in Germany")
+note(fig, "Source: Bitkom 2025 release; 2019 retrospective comparator, original methodology not reviewed.")
 save(fig, "germany_trend.png")
 
 # 4. Steakholder printer throughput
@@ -114,7 +114,7 @@ ax.xaxis.grid(True, color=GRID, lw=0.8)
 ax.set_axisbelow(True)
 ax.set_xlabel("Plant-based product per hour (kg)")
 ax.set_title("Industrial food printers: Steakholder Foods' stated output")
-note(fig, "Source: Green Queen, May 2026 (company-stated capacity).")
+note(fig, "Legacy supplier claims via Green Queen; not reverified. Rated output is not actual production.")
 save(fig, "printer_throughput.png")
 
 # 5. Timeline of milestones
@@ -158,6 +158,6 @@ for x, kind in enumerate(order):
 ax.set_xlim(0, 3)
 ax.set_ylim(-3.2, 0.8)
 ax.axis("off")
-ax.set_title("US state actions on cultivated (cell-based) meat, 2025")
-note(fig, "* Texas SB 261 (effective Sep 2025) is being challenged in federal court. Plant-based printed meat is not covered.")
+ax.set_title("Selected historical state records (not current legal status)")
+note(fig, "Legacy selected sample; not a complete/current 50-state review. Consult current statutes and court orders.")
 save(fig, "state_laws.png")

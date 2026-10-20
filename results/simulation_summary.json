@@ -1,0 +1,10 @@
+{
+  "label": "Illustrative independent triangular input draws; not calibrated commercial probabilities",
+  "seed": 20261020,
+  "draws": 10000,
+  "operating_profit_p10_usd": -245677.78642502704,
+  "operating_profit_p50_usd": 3090.2938565108343,
+  "operating_profit_p90_usd": 295531.34851142,
+  "fraction_positive_operating": 0.506,
+  "fraction_positive_npv": 0.0011
+}
